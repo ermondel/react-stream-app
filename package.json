@@ -1,6 +1,6 @@
 {
   "name": "react-stream-app",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "private": true,
   "homepage": "https://github.com/ermondel/react-stream-app#readme",
   "description": "react stream app",
@@ -9,6 +9,7 @@
   "main": "index.js",
   "scripts": {
     "dev": "webpack --mode development",
+    "media": "node ./src/media-server.js",
     "start": "webpack-dev-server --mode development --open"
   },
   "browserslist": "defaults",
@@ -49,6 +50,7 @@
     "webpack-dev-server": "^3.11.0"
   },
   "dependencies": {
+    "node-media-server": "^2.2.4",
     "normalize.css": "^8.0.1",
     "react": "^17.0.1",
     "react-dom": "^17.0.1"
