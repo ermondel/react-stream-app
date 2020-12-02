@@ -1,7 +1,44 @@
-$color: green;
+$color-border: black;
+$color-header: #1c243a;
+
+body {
+  font-family: 'Times New Roman', Times, serif;
+  font-size: 18px;
+}
 
 .app {
-  color: $color;
-  border: 1px solid $color;
-  padding: 10px;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.header {
+  padding-bottom: 10px;
+  border-bottom: 1px solid $color-border;
+  margin: 10px 0 10px 0;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.header__logo {
+  max-width: 50px;
+  height: auto;
+}
+
+.header__title {
+  font-weight: normal;
+  margin: 0;
+  padding: 0;
+  color: $color-header;
+}
+
+.main {
+  margin: 0 10px 10px 10px;
+}
+
+.player {
+  width: 100%;
+  margin-bottom: 10px;
 }

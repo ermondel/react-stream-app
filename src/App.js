@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import flv from 'flv.js';
+import Logo from './assets/images/logo.png';
 
 class App extends Component {
   state = {
@@ -60,11 +61,15 @@ class App extends Component {
 
   render() {
     return (
-      <div>
-        <div>
-          <video ref={this.videoRef} controls={true} />
-        </div>
-        <div>{this.state.progressBarMessage}</div>
+      <div className='app'>
+        <main className='main'>
+          <header className='header'>
+            <img src={Logo} className='header__logo' alt='logo' />
+            <h1 className='header__title'>React Stream App</h1>
+          </header>
+          <video ref={this.videoRef} controls={true} className='player' />
+          <div className='progress-bar'>{this.state.progressBarMessage}</div>
+        </main>
       </div>
     );
   }
