@@ -1,6 +1,6 @@
 {
   "name": "react-stream-app",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "private": true,
   "homepage": "https://github.com/ermondel/react-stream-app#readme",
   "description": "react stream app",
@@ -50,6 +50,7 @@
     "webpack-dev-server": "^3.11.0"
   },
   "dependencies": {
+    "axios": "^0.21.0",
     "node-media-server": "^2.2.4",
     "normalize.css": "^8.0.1",
     "react": "^17.0.1",
