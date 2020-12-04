@@ -42,3 +42,15 @@ body {
   width: 100%;
   margin-bottom: 10px;
 }
+
+.progress-bar {
+  display: flex;
+}
+
+.progress-bar__icon {
+  margin-left: 5px;
+}
+
+.progress-bar__img {
+  display: block;
+}

@@ -2,11 +2,13 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import flv from 'flv.js';
 import Logo from './assets/images/logo.png';
+import ProgressBar from './components/ProgressBar';
 
 class App extends Component {
   state = {
     mediaServerIsAvailable: false,
     progressBarMessage: '',
+    progressBarAnimated: false,
   };
 
   videoRef = React.createRef();
@@ -34,7 +36,10 @@ class App extends Component {
 
   progressBarActive() {
     if (!this.state.mediaServerIsAvailable) {
-      this.setState({ progressBarMessage: 'Request to the media server ...' });
+      this.setState({
+        progressBarMessage: 'Request to the media server ',
+        progressBarAnimated: true,
+      });
 
       this.pingMediaServer();
 
@@ -44,7 +49,10 @@ class App extends Component {
 
   progressBarStatic() {
     if (!this.state.mediaServerIsAvailable) {
-      this.setState({ progressBarMessage: 'The media server is not responding.' });
+      this.setState({
+        progressBarMessage: 'The media server is not responding.',
+        progressBarAnimated: false,
+      });
 
       setTimeout(() => this.progressBarActive(), 3000);
     }
@@ -67,8 +75,14 @@ class App extends Component {
             <img src={Logo} className='header__logo' alt='logo' />
             <h1 className='header__title'>React Stream App</h1>
           </header>
+
           <video ref={this.videoRef} controls={true} className='player' />
-          <div className='progress-bar'>{this.state.progressBarMessage}</div>
+
+          <ProgressBar
+            display={!this.state.mediaServerIsAvailable}
+            animated={this.state.progressBarAnimated}
+            message={this.state.progressBarMessage}
+          />
         </main>
       </div>
     );
