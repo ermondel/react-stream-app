@@ -6,7 +6,16 @@ const path = require('path');
 
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const OptimizeCssAssetsWebpackPlugin = require('optimize-css-assets-webpack-plugin');
+const TerserWebpackPlugin = require('terser-webpack-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
+
+/**
+ * Env
+ */
+
+const isDev = process.env.NODE_ENV === 'development';
+const isProd = !isDev;
 
 /**
  * Rules
@@ -17,18 +26,18 @@ const css = {
   use: [
     {
       loader: MiniCssExtractPlugin.loader,
-      options: { hmr: true, reload: true },
+      options: { hmr: isDev, reload: true },
     },
     'css-loader',
   ],
 };
 
 const scss = {
-  test: /\.s[ac]ss/,
+  test: /\.s[ac]ss$/,
   use: [
     {
       loader: MiniCssExtractPlugin.loader,
-      options: { hmr: true, reload: true },
+      options: { hmr: isDev, reload: true },
     },
     {
       loader: 'css-loader',
@@ -54,11 +63,7 @@ const images = {
 
 const fonts = {
   test: /\.(ttf|woff|woff2|eot)$/,
-  use: [
-    {
-      loader: 'file-loader',
-    },
-  ],
+  use: ['file-loader'],
 };
 
 const js = () => {
@@ -70,8 +75,11 @@ const js = () => {
         plugins: ['@babel/plugin-proposal-class-properties'],
       },
     },
-    'eslint-loader',
   ];
+
+  if (isDev) {
+    use.push('eslint-loader');
+  }
 
   return {
     test: /\.js$/,
@@ -90,33 +98,36 @@ const html = {
  */
 
 module.exports = {
-  mode: 'development',
+  mode: isDev ? 'development' : 'production',
   entry: {
     main: ['@babel/polyfill', './src/index.js'],
   },
   output: {
-    filename: '[name].js',
+    filename: isDev ? '[name].js' : '[name].[hash].js',
     path: path.resolve(__dirname, 'dist'),
   },
   optimization: {
     splitChunks: {
       chunks: 'all',
     },
+    minimizer: [new OptimizeCssAssetsWebpackPlugin(), new TerserWebpackPlugin()],
+    minimize: isProd,
   },
   devServer: {
     port: 3000,
-    hot: true,
+    hot: isDev,
   },
-  devtool: 'source-map',
+  devtool: isDev ? 'source-map' : '',
   plugins: [
     new HtmlWebpackPlugin({
       template: './src/index.ejs',
       filename: 'index.html',
+      minify: { collapseWhitespace: isProd },
       favicon: './src/assets/images/favicon.ico',
     }),
     new CleanWebpackPlugin(),
     new MiniCssExtractPlugin({
-      filename: '[name].css',
+      filename: isDev ? '[name].css' : '[name].[hash].css',
     }),
   ],
   module: {

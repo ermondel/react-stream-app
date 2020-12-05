@@ -1,6 +1,6 @@
 {
   "name": "react-stream-app",
-  "version": "0.9.0",
+  "version": "0.10.0",
   "private": true,
   "homepage": "https://github.com/ermondel/react-stream-app#readme",
   "description": "react stream app",
@@ -8,9 +8,10 @@
   "license": "CC BY-NC 4.0",
   "main": "index.js",
   "scripts": {
-    "dev": "webpack --mode development",
-    "media": "node ./src/media-server.js",
-    "start": "webpack-dev-server --mode development --open"
+    "dev": "cross-env NODE_ENV=development webpack --mode development",
+    "prod": "cross-env NODE_ENV=production webpack --mode production",
+    "start": "cross-env NODE_ENV=development webpack-dev-server --mode development --open",
+    "media": "node ./src/media-server.js"
   },
   "browserslist": "defaults",
   "eslintConfig": {
@@ -28,6 +29,7 @@
     "babel-eslint": "^10.1.0",
     "babel-loader": "^8.2.2",
     "clean-webpack-plugin": "^3.0.0",
+    "cross-env": "^7.0.3",
     "css-loader": "^5.0.1",
     "eslint": "^7.14.0",
     "eslint-config-react-app": "^6.0.0",
@@ -42,9 +44,11 @@
     "html-webpack-plugin": "^4.5.0",
     "mini-css-extract-plugin": "^0.12.0",
     "node-sass": "^5.0.0",
+    "optimize-css-assets-webpack-plugin": "^5.0.4",
     "postcss-loader": "^4.1.0",
     "sass-loader": "^10.1.0",
     "style-loader": "^2.0.0",
+    "terser-webpack-plugin": "^4.2.3",
     "webpack": "^4.44.2",
     "webpack-cli": "^3.3.12",
     "webpack-dev-server": "^3.11.0"
