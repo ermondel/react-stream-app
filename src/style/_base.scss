@@ -23,7 +23,7 @@ body {
 }
 
 .header__logo {
-  max-width: 50px;
+  max-width: 30px;
   height: auto;
 }
 
@@ -32,6 +32,7 @@ body {
   margin: 0;
   padding: 0;
   color: $color-header;
+  font-size: 1.3rem;
 }
 
 .main {
@@ -56,4 +57,24 @@ body {
 
 .progress-bar__img {
   display: block;
+}
+
+@media screen and (min-width: 400px) {
+  .header__logo {
+    max-width: 40px;
+  }
+
+  .header__title {
+    font-size: 1.7rem;
+  }
+}
+
+@media screen and (min-width: 800px) {
+  .header__logo {
+    max-width: 50px;
+  }
+
+  .header__title {
+    font-size: 2em;
+  }
 }

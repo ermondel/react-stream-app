@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import flv from 'flv.js';
-import Logo from './assets/images/logo.png';
+import Header from './components/Header';
 import ProgressBar from './components/ProgressBar';
 
 class App extends Component {
@@ -61,10 +61,7 @@ class App extends Component {
     return (
       <div className='app'>
         <main className='main'>
-          <header className='header'>
-            <img src={Logo} className='header__logo' alt='logo' />
-            <h1 className='header__title'>React Stream App</h1>
-          </header>
+          <Header />
 
           <video ref={this.videoRef} controls={true} className='player' />
 
