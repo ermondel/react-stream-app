@@ -7,8 +7,7 @@ import ProgressBar from './components/ProgressBar';
 class App extends Component {
   state = {
     mediaServerIsAvailable: false,
-    progressBarMessage: '',
-    progressBarAnimated: false,
+    progressBarStatus: 'disabled', // disabled | request | notice
   };
 
   videoRef = React.createRef();
@@ -26,7 +25,7 @@ class App extends Component {
       if (!error.message.includes('Network Error') && this.videoPlayer) {
         this.setState({
           mediaServerIsAvailable: true,
-          progressBarMessage: '',
+          progressBarStatus: 'disabled',
         });
 
         this.videoPlayer.load();
@@ -36,24 +35,15 @@ class App extends Component {
 
   progressBarActive() {
     if (!this.state.mediaServerIsAvailable) {
-      this.setState({
-        progressBarMessage: 'Request to the media server ',
-        progressBarAnimated: true,
-      });
-
+      this.setState({ progressBarStatus: 'request' });
       this.pingMediaServer();
-
       setTimeout(() => this.progressBarStatic(), 5000);
     }
   }
 
   progressBarStatic() {
     if (!this.state.mediaServerIsAvailable) {
-      this.setState({
-        progressBarMessage: 'The media server is not responding.',
-        progressBarAnimated: false,
-      });
-
+      this.setState({ progressBarStatus: 'notice' });
       setTimeout(() => this.progressBarActive(), 3000);
     }
   }
@@ -78,11 +68,7 @@ class App extends Component {
 
           <video ref={this.videoRef} controls={true} className='player' />
 
-          <ProgressBar
-            display={!this.state.mediaServerIsAvailable}
-            animated={this.state.progressBarAnimated}
-            message={this.state.progressBarMessage}
-          />
+          <ProgressBar status={this.state.progressBarStatus} />
         </main>
       </div>
     );

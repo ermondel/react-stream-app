@@ -1,9 +1,23 @@
 import React from 'react';
-import spinner from '../assets/images/spinner.svg';
+import img from '../assets/images/spinner.svg';
 
-const ProgressBar = ({ display, animated, message }) => {
-  if (!display) {
-    return null;
+const ProgressBar = ({ status }) => {
+  let message;
+  let spinner;
+
+  switch (status) {
+    case 'request':
+      message = 'Request to the media server ';
+      spinner = true;
+      break;
+
+    case 'notice':
+      message = 'The media server is not responding.';
+      spinner = false;
+      break;
+
+    default:
+      return null;
   }
 
   const alt = 'Loading data...';
@@ -13,7 +27,7 @@ const ProgressBar = ({ display, animated, message }) => {
       <span className='progress-bar__message'>{message}</span>
 
       <span className='progress-bar__icon'>
-        {animated && <img src={spinner} alt={alt} className='progress-bar__img' />}
+        {spinner && <img src={img} alt={alt} className='progress-bar__img' />}
       </span>
     </div>
   );
