@@ -1,6 +1,6 @@
 {
   "name": "react-stream-app",
-  "version": "0.10.0",
+  "version": "0.11.0",
   "private": true,
   "homepage": "https://github.com/ermondel/react-stream-app#readme",
   "description": "react stream app",
@@ -9,9 +9,11 @@
   "main": "index.js",
   "scripts": {
     "dev": "cross-env NODE_ENV=development webpack --mode development",
-    "prod": "cross-env NODE_ENV=production webpack --mode production",
-    "start": "cross-env NODE_ENV=development webpack-dev-server --mode development --open",
-    "media": "node ./src/media-server.js"
+    "build": "cross-env NODE_ENV=production webpack --mode production",
+    "wds": "cross-env NODE_ENV=development webpack-dev-server --mode development --open",
+    "media": "node ./src/media-server.js",
+    "client": "serve dist",
+    "start": "concurrently \"npm:media\" \"npm:client\""
   },
   "browserslist": "defaults",
   "eslintConfig": {
@@ -55,10 +57,12 @@
   },
   "dependencies": {
     "axios": "^0.21.0",
+    "concurrently": "^5.3.0",
     "flv.js": "^1.5.0",
     "node-media-server": "^2.2.4",
     "normalize.css": "^8.0.1",
     "react": "^17.0.1",
-    "react-dom": "^17.0.1"
+    "react-dom": "^17.0.1",
+    "serve": "^11.3.2"
   }
 }
