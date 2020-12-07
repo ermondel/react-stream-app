@@ -6,6 +6,8 @@
 
 Simple local streaming media player.
 
+![React Stream App](https://github.com/ermondel/wiki/blob/master/screens/react-stream-app.jpg)
+
 ### Requirements
 
 [OBS Studio](https://obsproject.com/) - free and open source software for video recording and live streaming.
