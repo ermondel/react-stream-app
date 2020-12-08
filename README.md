@@ -17,11 +17,13 @@ Simple local streaming media player.
 1. `git clone git@github.com:ermondel/react-stream-app.git`
 2. `npm install`
 3. `npm run build`
-4. Set up a live stream with OBS Studio
+4. [Set up live streaming with OBS Studio](manual/obs-setup.md)
 
 ### Usage
 
-`npm run start`
+1. `npm run start` («Ctrl+C» to stop)
+2. [Start live streaming with OBS Studio](manual/obs-start.md)
+3. Open [http://localhost:5000](http://localhost:5000)
 
 | Technologies      |
 | ----------------- |
