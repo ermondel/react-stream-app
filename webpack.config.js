@@ -100,7 +100,7 @@ const html = {
 module.exports = {
   mode: isDev ? 'development' : 'production',
   entry: {
-    main: ['@babel/polyfill', './src/index.js'],
+    main: ['@babel/polyfill', path.resolve(__dirname, 'src/index.js')],
   },
   output: {
     filename: isDev ? '[name].js' : '[name].[hash].js',
@@ -120,10 +120,10 @@ module.exports = {
   devtool: isDev ? 'source-map' : '',
   plugins: [
     new HtmlWebpackPlugin({
-      template: './src/index.ejs',
+      template: path.resolve(__dirname, 'src/index.ejs'),
       filename: 'index.html',
       minify: { collapseWhitespace: isProd },
-      favicon: './src/assets/images/favicon.ico',
+      favicon: path.resolve(__dirname, 'src/assets/images/favicon.ico'),
     }),
     new CleanWebpackPlugin(),
     new MiniCssExtractPlugin({

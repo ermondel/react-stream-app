@@ -25,6 +25,8 @@ Simple local streaming media player.
 2. [Start live streaming with OBS Studio](manual/obs-start.md)
 3. Open [http://localhost:5000](http://localhost:5000)
 
+[Common errors](manual/common-errors.md)!
+
 | Technologies      |
 | ----------------- |
 | React             |
